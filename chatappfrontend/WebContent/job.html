@@ -1,0 +1,50 @@
+<html >
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script>
+var appref=angular.module('myApp',[]);
+appref.controller('myCtrl',function($scope,$http){
+$http.get('http://localhost:5050/blogmiddleware/getAllJobs').success(function(data){
+$scope.jobs=data;
+})
+});
+</script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+
+<style>
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;   
+    padding: 8px;
+}
+
+</style>
+
+<table>
+
+<tr>
+<th>jobId</th>
+<th>jobTitle</th>
+<th>salary</th>
+<th>companyName<th>
+</tr>
+
+<tr ng-repeat="job in jobs">
+<td>{{job.jobId}}</td>
+<td>{{job.jobTitle}}</td>
+<td>{{job.salary}}</td>
+<td>{{job.companyName}}</td>
+</tr>
+</table>
+</body>
+</html>
+

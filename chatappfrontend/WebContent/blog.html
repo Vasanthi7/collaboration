@@ -1,0 +1,47 @@
+<html >
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script>
+var appref=angular.module('myApp',[]);
+appref.controller('myCtrl',function($scope,$http){
+$http.get('http://localhost:5050/blogmiddleware/getAllBlogs').success(function(data){
+$scope.blogs=data;
+})
+});
+</script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<style>
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;   
+    padding: 8px;
+}
+
+</style>
+
+
+<table>
+<tr>
+<th>blogid</th>
+<th>blogName</th>
+<th>blogContent</th>
+</tr>
+
+<tr ng-repeat="blog in blogs">
+<td>{{blog.blogid}}</td>
+<td>{{blog.blogName}}</td>
+<td>{{blog.blogContent}}</td>
+</tr>
+</table>
+</body>
+</html>
+
