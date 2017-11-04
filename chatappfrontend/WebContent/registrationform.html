@@ -1,0 +1,63 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script>
+
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function ($scope, $http) {
+$scope.registrationId = null;
+$scope.firstName = null;
+$scope.lastName = null;
+$scope.emailId = null;
+$scope.password = null;
+$scope.mobileNumber = null;
+
+$scope.postdata = function (registrationId, firstName, lastName, emailId, password, mobileNumber) {
+var data = {
+registrationId: registrationId,
+firstName: firstName,
+lastName: lastName,
+emailId: emailId,
+password: password,
+mobileNumber: mobileNumber
+
+};
+
+//Call the services
+$http.post('http://localhost:5050/blogmiddleware/registerUser', data).then(function (response) {
+if (response.data)
+$scope.msg = "Blog Data Submitted Successfully!";
+$scope.msg = "blog is successfull";
+$scope.statusval = response.status;
+
+}, function (response) {
+
+});
+};
+});
+</script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+<h1 style="background-color:DodgerBlue;"></h1>
+<div>
+RegistrationId : <input ng-model="registrationId" /><br/><br/>
+FirstName : <input ng-model="firstName" /><br/><br/>
+lastName : <input ng-model="lastName" /><br/><br/>
+1EmailId : <input ng-model=" emailId" /><br/><br/>
+Password : <input ng-model=" password"/><br/><br/>
+MobileNumber: <input ng-model="  mobileNumber"/><br/><br/>
+
+
+
+
+
+
+<input type="button" value="Submit" ng-click="postdata(registrationId, firstName, lastName, emailId, password, mobileNumber)" /> <br/><br/>
+</div>
+<p>Output Message : {{msg}}</p>
+<p>StatusCode: {{statusval}}</p>
+
+</div>
+</body>
+</html>

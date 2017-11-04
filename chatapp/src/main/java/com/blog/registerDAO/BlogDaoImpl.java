@@ -1,5 +1,8 @@
 package com.blog.registerDAO;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +52,58 @@ public class BlogDaoImpl implements BlogDaoInt {
 					session.update(blog);
 					
 				}
+
+
+
+				public Blog getBlog(String blogId)
+				{
+					Session session=sessionFactory.getCurrentSession();
+					Blog blog=(Blog)session.get(Blog.class, blogId);
+					blog.setBlogApproval("true");
+					session.save(blog);
+					return blog;
+					
+				}
+				
+				public List<Blog> getAllBlogs()
+				{
+					Session session=sessionFactory.getCurrentSession();
+					Query query=session.createQuery("from Blog");
+					
+					return query.getResultList();
+					
+				}
+
+
+
+				public List<Blog> waitingForApproval()
+				{
+					Session session=sessionFactory.getCurrentSession();
+					Query query=session.createQuery("from Blog where blogApproval='false'");
+					return query.getResultList();
+				}
+
+
+				
+				
+
+					
+					/*public Blog updateBlogApproval(Blog blog) {
+						Session session=sessionFactory.getCurrentSession();
+						Query query=session.createQuery("from Blog where blogApproval = ?");
+						query.setString(0, blog.getBlogApproval());
+						session.update(blog);
+						 return  blog=(Blog)query.uniqueResult();
+					}
+
+*/
+			
+				
+				
 				
 		}
+				
+		
 			
 			
 		

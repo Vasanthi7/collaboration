@@ -5,7 +5,8 @@ import com.blog.model.RegistrationForm;
 public interface RegisterationInt 
 {
 
-	boolean registerUser(RegistrationForm registrationUser);
+	 public boolean registerUser(RegistrationForm registrationUser);
+	 public RegistrationForm loginCheck(RegistrationForm registrationUser);
 
 
 }

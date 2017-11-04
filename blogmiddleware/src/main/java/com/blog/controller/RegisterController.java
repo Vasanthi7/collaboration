@@ -24,4 +24,10 @@ public class RegisterController {
 			
 		}
 
+	
+	@PostMapping("/loginCheck")
+	public ResponseEntity<RegistrationForm> loginCheck(@RequestBody RegistrationForm registrationUser){
+		rDao.loginCheck(registrationUser);
+		return new ResponseEntity<RegistrationForm>(registrationUser,HttpStatus.OK);
+	}
 }

@@ -1,0 +1,47 @@
+<html ng-app="myApp">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script>
+var myApp=angular.module('myApp',[]);
+myApp.controller('myCtrl',function($scope,$http){
+$http.get('http://localhost:5050/blogmiddleware/getblogs').success(function(data){
+$scope.blogApproved=data;
+});
+});
+</script>
+</head>
+<body ng-controller="myCtrl"><style>
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;   
+    padding: 8px;
+}
+
+</style>
+
+
+<table>
+<tr>
+<th>blogid</th>
+<th>blogName</th>
+<th>blogContent</th>
+<th>button</th>
+
+</tr>
+<tr ng-repeat="approval in blogApproved ">
+<td>{{ approval.blogid }}</td>
+<td>{{ approval.blogName }}</td>
+<td>{{ approval.blogContent }}</td>
+<td><input type='radio' name='approved' value='button'/></td>
+</tr>
+
+
+</body>
+</html>

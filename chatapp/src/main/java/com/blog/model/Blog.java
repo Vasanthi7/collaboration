@@ -12,6 +12,7 @@ public class Blog
 	private String  blogid;
 	private String blogName;
 	private String blogContent;
+	private String blogApproval;
 	public String getBlogid() {
 		return blogid;
 	}
@@ -30,6 +31,13 @@ public class Blog
 	public void setBlogContent(String blogContent) {
 		this.blogContent = blogContent;
 	}
+	public String getBlogApproval() {
+		return blogApproval;
+	}
+	public void setBlogApproval(String blogApproval) {
+		this.blogApproval = blogApproval;
+	}
+	
 	
 
 }
